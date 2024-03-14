@@ -1,0 +1,14 @@
+version: '3.8'
+services:
+  psql:
+    image: 'postgres:16-alpine'
+    container_name: psql
+    env_file:
+      - ./env/.env.psql
+    volumes:
+      - data:/var/lib/postgresql/data
+      - ./env/create-database.sql:/docker-entrypoint-initdb.d/create-database.sql
+    ports:
+      - '5432:5432'
+volumes:
+  data:
